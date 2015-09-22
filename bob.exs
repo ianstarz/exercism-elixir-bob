@@ -1,7 +1,9 @@
 defmodule Teenager do
   def hey(input) do
     cond do
-      Regex.match?(~r/^(?:[^A-Za-z]*[A-Z][^\s,]*)*[^A-Za-z]*$/, input) -> "Whoa, chill out!"
+      !List.last(String.split(input)) -> "Fine. Be that way!"
+      Regex.match?(~r/.*\?$/, input) -> "Sure."
+      String.upcase(input) == input && Regex.match?(~r/[\p{Lu}]/, input) -> "Whoa, chill out!"
       true -> "Whatever."
     end
   end
